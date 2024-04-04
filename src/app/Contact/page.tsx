@@ -34,44 +34,50 @@ export default function Contact() {
   }, [pop]);
 
   return (
-    <div className="w-screen text-cor1 flex flex-col justify-center items-center">
-      <div className=" w-4/5  mt-32 text-xl md:mt-72 md:text-3xl    lg:w-3/5 lg:mt-60">
+    <div className=" flex flex-col justify-center items-center text-white mt-20 mb-24 gap-8 text-center md:text-2xl md:mt-28 md:gap-14">
+      <div className="w-4/5">
         <h2>
           Estou feliz em receber suas perguntas, comentários e feedback. Para
           entrar em contato, estou disponível pelos meios fornecidos abaixo,
           clique nas imagens para copiar as informações.
         </h2>
       </div>
-      <div className=" flex flex-row gap-6  mt-20 text-xs md:text-xl md:gap-32 ">
-        <div className=" w-24 text-center" onClick={() => handleInfo("1")}>
+      <div className="flex  gap-4">
+        <div
+          className="flex flex-col justify-center items-center"
+          onClick={() => handleInfo("1")}
+        >
           <h1>WhatsApp</h1>
-          <div className="relative w-10 h-10 ml-6 mt-2 mb-2">
+          <div className="relative size-10">
             <Image fill src="/extra/WhatsApp.svg" alt="" />
           </div>
-          <h2 className="md:-ml-8">{infos[0]}</h2>
+          <h2>{infos[0]}</h2>
         </div>
-        <div className=" w-24 text-center" onClick={() => handleInfo("2")}>
+        <div
+          className="flex flex-col justify-center items-center"
+          onClick={() => handleInfo("2")}
+        >
           <h1>Email</h1>
-          <div className="relative w-10 h-10 ml-6 mt-2 mb-2">
+          <div className="relative size-10">
             <Image fill src="/extra/mail.svg" alt="" />
           </div>
-          <h2 className="md:-ml-8">{infos[1]}</h2>
+          <h2>{infos[1]}</h2>
         </div>
-        <div className=" w-24 text-center" onClick={() => handleInfo("3")}>
+        <div onClick={() => handleInfo("3")}>
           <h1>GitHub</h1>
-          <div className="relative w-10 h-10 ml-6 mt-2 mb-2">
+          <div className="relative size-10">
             <Image fill src="/extra/github.svg" alt="" />
           </div>
         </div>
       </div>
-      <div className="text-center w-4/5 mt-12">
+      <div className="w-4/5">
         <p>
           Esse portifólio também foi feito por mim, caso tenha ficado
           interessado o repositório está disponível no meu Github
         </p>
       </div>
       {pop ? (
-        <div className="border-2 border-cor2 p-1 rounded-2xl text-center w-3/5 ml-16 mt-4 lg:w-1/5 lg:ml-96 lg:-mt-60">
+        <div className="border-4 border-cor2 p-2 rounded-lg">
           Informação Copiada
         </div>
       ) : (

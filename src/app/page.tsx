@@ -1,104 +1,59 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import JobHodler from "./Components/JobHolder/JobHolder";
 
 export default function Projects() {
   const router = useRouter();
   const handleNavigation = (slug: string) => {
     router.push(`/${slug}`);
   };
-  const iaaraText = "Tecnologias:NextJs+TailwindCss+MongoDB(NoSQL)";
 
+  const Iaara = {
+    Título: "Iaara",
+    Tecnologia: "NextJs+TailWindCSS+MongoDB",
+    src: "/Iaara/img1.png",
+  };
+
+  const Api_PHP = {
+    Título: "API+ReactJS",
+    Tecnologia: "Laravel10+ReactJS+TailWindCSS+Mysql",
+    src: "/Api/img1.png",
+  };
+
+  const MarketPlace = {
+    Título: "MarketPlace",
+    Tecnologia: "ReactJs+TailWindCSS+ContextAPI",
+    src: "/Market/img1.png",
+  };
+
+  const DarkMode = {
+    Título: "DarkModeSwitch",
+    Tecnologia: "NextJs+TailWindCSS+MongoDB",
+    src: "/DarkMode/img1.png",
+  };
+
+  const Streaming = {
+    Título: "Streaming",
+    Tecnologia: "HTML+CSS+JavaScript",
+    src: "/Streaming/img1.png",
+  };
   return (
-    <div className="w-screen pb-20 text-cor1 ">
-      <div className="flex flex-col justify-center items-center ">
-        <div
-          className=" w-4/5  mt-20 text-center pb-4 lg:w-5/5  lg:mt-28 "
-          onClick={() => handleNavigation("Iaara")}
-        >
-          <h1 className="mt-2 mb-2 text-xl lg:mb-8 lg:text-3xl">Iaara</h1>
-          <div className="relative w-full h-72 lg:h-96 lg:w-4/5 lg:ml-24 2xl:w-3/5 2xl:ml-80">
-            <Image
-              src="/project5/img1.png"
-              alt=""
-              fill
-              className="rounded-2xl w-"
-            />
-          </div>
-          <p className="mt-2 text-sm lg:text-xl">{iaaraText}</p>
-        </div>
-        <div
-          className="w-4/5  mt-20 text-center pb-4 lg:w-5/5   "
-          onClick={() => handleNavigation("Marketplace")}
-        >
-          <h1 className="mt-2 mb-2 text-xl lg:mb-8 lg:text-3xl">MarketPlace</h1>
-          <div className="relative w-full h-72 lg:h-96 lg:w-4/5 lg:ml-24 2xl:w-3/5 2xl:ml-80 ">
-            <Image
-              src="/project2/img1.png"
-              alt=""
-              fill
-              className="rounded-2xl"
-            />
-          </div>
-          <p className="mt-2 text-sm lg:text-xl">
-            Tecnologias:ReactJs+TailwindCss
-          </p>
-        </div>
-        <div
-          className=" w-4/5  mt-20 text-center pb-4 lg:w-5/5   "
-          onClick={() => handleNavigation("Streaming")}
-        >
-          <h1 className="mt-2 mb-2 text-xl lg:mb-8 lg:text-3xl">Streaming</h1>
-          <div className="relative w-full h-72 lg:h-96 lg:w-4/5 lg:ml-24 2xl:w-3/5 2xl:ml-80 ">
-            <Image
-              src="/project1/img1.png"
-              alt=""
-              fill
-              className="rounded-2xl"
-            />
-          </div>
-          <p className="mt-2 text-sm lg:text-xl">
-            Tecnologias:Html+JavaScript+CSS
-          </p>
-        </div>
-
-        <div
-          className=" w-4/5  mt-20 text-center pb-4 lg:w-5/5   "
-          onClick={() => handleNavigation("Quizz")}
-        >
-          <h1 className="mt-2 mb-2 text-xl lg:mb-8 lg:text-3xl">Quizz</h1>
-          <div className="relative w-full h-72 lg:h-96 lg:w-4/5 lg:ml-24 2xl:w-3/5 2xl:ml-80 ">
-            <Image
-              src="/project4/img1.png"
-              alt=""
-              fill
-              className="rounded-2xl"
-            />
-          </div>
-          <p className="mt-2 text-sm lg:text-xl">
-            Tecnologias:Html+JavaScript+CSS
-          </p>
-        </div>
-        <div
-          className="w-4/5  mt-20 text-center pb-4 lg:w-5/5   "
-          onClick={() => handleNavigation("Landing")}
-        >
-          <h1 className="mt-2 mb-2 text-xl lg:mb-8 lg:text-3xl">
-            Landing Page Estática
-          </h1>
-          <div className="relative w-full h-72 lg:h-96 lg:w-4/5 lg:ml-24 2xl:w-3/5 2xl:ml-80">
-            <Image
-              src="/project3/img1.png"
-              alt=""
-              fill
-              className="rounded-2xl"
-            />
-          </div>
-          <p className="mt-2 text-sm lg:text-xl">
-            Tecnologias:Html+JavaScript+CSS
-          </p>
-        </div>
+    <div className="mt-20 mb-24 flex flex-col justify-center items-center  gap-4 text-white">
+      <div onClick={() => handleNavigation("Iaara")}>
+        <JobHodler Job={Iaara} />
+      </div>
+      <div onClick={() => handleNavigation("Api_PHP")}>
+        <JobHodler Job={Api_PHP} />
+      </div>
+      <div onClick={() => handleNavigation("Marketplace")}>
+        <JobHodler Job={MarketPlace} />
+      </div>
+      <div onClick={() => handleNavigation("DarkMode")}>
+        <JobHodler Job={DarkMode} />
+      </div>
+      <div onClick={() => handleNavigation("Streaming")}>
+        <JobHodler Job={Streaming} />
       </div>
     </div>
   );

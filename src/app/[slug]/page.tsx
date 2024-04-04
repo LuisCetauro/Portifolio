@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { getProject } from "../../../public/Json/ProjectsData";
-
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -42,93 +41,83 @@ export default function IndividualProject({ params }: params) {
   };
 
   useEffect(() => {
-    async function fetchData() {
+    const pegarProjeto = async () => {
       const projetoData = await getProject(slug);
       if (projetoData) {
         setProjeto(projetoData);
       }
-    }
-    fetchData();
+    };
+
+    pegarProjeto();
   }, [slug]);
 
   if (!projeto) {
     return (
-      <div>
+      <div className="mt-24 text-center text-white flex flex-col gap-4 justify-center items-center md:text-2xl">
         Página não encontrada, favor retornar
         <button
-          className=""
+          className="border-4 border-cor2 p-2 rounded-lg"
           onClick={() => {
             router.push("/");
           }}
         >
-          Voltar
+          Home
         </button>
       </div>
     );
   }
 
   return (
-    <div className=" w-screen text-sm pb-20 md:text-xl text-cor1">
-      <div className="text-center mt-20 md:mt-28  ">
-        <div className="lg:flex lg:flex-row">
-          <div className="w-4/5 ml-8 mb-6 lg:mt-6 lg:ml-0 ">
-            <h1>Título: {projeto.title}</h1>
-            <p className="md:ml-12 lg:mt-12 lg:ml-4">
-              Descrição: {projeto.description}
-            </p>
-          </div>
-          <div className="relative w-4/5 h-60 ml-9 md:w-full md:ml-0 md:h-96 2xl:w-4/5 2xl:mr-20 2xl:ml-12">
-            <Image
-              src={projeto.src[image]}
-              fill
-              alt=""
-              className="rounded-3xl"
-            />
-          </div>
-        </div>
-        <div className=" flex flex-row gap-12 w-2/5 ml-28 mt-2 mb-2 md:gap-32 md:ml-52  lg:-mt-24 lg:ml-36">
-          <button
-            className="border-4 border-cor2 rounded-2xl p-1"
-            onClick={() => {
-              router.push(projeto.interact);
-            }}
-          >
-            Interagir
-          </button>
+    <div className="mt-20 mb-28 flex flex-col justify-center items-center text-white text-center gap-8 md:text-2xl">
+      <div className="w-[350px] md:w-[500px] lg:w-[650px] 2xl:w-[800px]">
+        <h1>Título: {projeto.title}</h1>
+        <p>Descrição: {projeto.description}</p>
+      </div>
+      <div className="relative size-60 md:size-[400px] lg:w-[650px] 2xl:w-[1000px] 2xl:h-[600px]">
+        <Image src={projeto.src[image]} fill alt="" className="rounded-2xl" />
+      </div>
+      <div className=" flex flex-row gap-4 -ml-2">
+        <button
+          className="border-4 border-cor2 p-1 rounded-lg"
+          onClick={() => {
+            router.push(projeto.interact);
+          }}
+        >
+          Interagir
+        </button>
 
-          <button
-            className="border-4 border-cor2 rounded-2xl p-1"
-            onClick={() => {
-              router.push(projeto.github);
-            }}
-          >
-            Github
-          </button>
-        </div>
-        <div className="flex flex-row  gap-3 ml-20  md:gap-12 md:ml-40 lg:ml-24">
-          <button
-            className="border-4 border-cor2 rounded-2xl p-1"
-            onClick={prevImage}
-          >
-            Imagem anterior
-          </button>
-          <button
-            className="border-4 border-cor2 rounded-2xl p-1"
-            onClick={nextImage}
-          >
-            Próxima imagem
-          </button>
-        </div>
-        <div>
-          <button
-            className="border-4 border-cor2 rounded-2xl p-1 ml-4 mt-2 md:-ml-4 lg:-ml-56"
-            onClick={() => {
-              router.push("/");
-            }}
-          >
-            Voltar
-          </button>
-        </div>
+        <button
+          className="border-4 border-cor2 p-1 rounded-lg"
+          onClick={() => {
+            router.push(projeto.github);
+          }}
+        >
+          Github
+        </button>
+      </div>
+      <div className=" flex flex-row gap-4">
+        <button
+          className="border-4 border-cor2 p-1 rounded-lg"
+          onClick={prevImage}
+        >
+          Imagem anterior
+        </button>
+        <button
+          className="border-4 border-cor2 p-1 rounded-lg"
+          onClick={nextImage}
+        >
+          Próxima imagem
+        </button>
+      </div>
+      <div>
+        <button
+          className="border-4 border-cor2 p-1 rounded-lg"
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          Voltar
+        </button>
       </div>
     </div>
   );
