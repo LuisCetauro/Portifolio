@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import JobHodler from "./Components/JobHolder/JobHolder";
+import JobHolder from "./Components/JobHolder/JobHolder";
 
 export default function Projects() {
   const router = useRouter();
@@ -9,51 +9,52 @@ export default function Projects() {
     router.push(`/${slug}`);
   };
 
-  const Iaara = {
-    Título: "Iaara",
-    Tecnologia: "NextJs+TailWindCSS+MongoDB",
-    src: "/Iaara/img1.png",
-  };
+  const projects = [
+    {
+      title: "Iaara",
+      technology: "NextJs + TailwindCSS + MongoDB",
+      src: "/Iaara/img1.png",
+      slug: "Iaara",
+    },
+    {
+      title: "API + ReactJS",
+      technology: "Laravel 10 + ReactJS + TailwindCSS + MySQL",
+      src: "/Api/img1.png",
+      slug: "Api_PHP",
+    },
+    {
+      title: "MarketPlace",
+      technology: "ReactJs + TailwindCSS + ContextAPI",
+      src: "/Market/img1.png",
+      slug: "Marketplace",
+    },
+    {
+      title: "DarkMode Switch",
+      technology: "NextJs + TailwindCSS + MongoDB",
+      src: "/DarkMode/img1.png",
+      slug: "DarkMode",
+    },
+    {
+      title: "Streaming",
+      technology: "HTML + CSS + JavaScript",
+      src: "/Streaming/img1.png",
+      slug: "Streaming",
+    },
+  ];
 
-  const Api_PHP = {
-    Título: "API+ReactJS",
-    Tecnologia: "Laravel10+ReactJS+TailWindCSS+Mysql",
-    src: "/Api/img1.png",
-  };
-
-  const MarketPlace = {
-    Título: "MarketPlace",
-    Tecnologia: "ReactJs+TailWindCSS+ContextAPI",
-    src: "/Market/img1.png",
-  };
-
-  const DarkMode = {
-    Título: "DarkModeSwitch",
-    Tecnologia: "NextJs+TailWindCSS+MongoDB",
-    src: "/DarkMode/img1.png",
-  };
-
-  const Streaming = {
-    Título: "Streaming",
-    Tecnologia: "HTML+CSS+JavaScript",
-    src: "/Streaming/img1.png",
-  };
   return (
-    <div className="mt-20 mb-24 flex flex-col justify-center items-center  gap-4 text-white">
-      <div onClick={() => handleNavigation("Iaara")}>
-        <JobHodler Job={Iaara} />
-      </div>
-      <div onClick={() => handleNavigation("Api_PHP")}>
-        <JobHodler Job={Api_PHP} />
-      </div>
-      <div onClick={() => handleNavigation("Marketplace")}>
-        <JobHodler Job={MarketPlace} />
-      </div>
-      <div onClick={() => handleNavigation("DarkMode")}>
-        <JobHodler Job={DarkMode} />
-      </div>
-      <div onClick={() => handleNavigation("Streaming")}>
-        <JobHodler Job={Streaming} />
+    <div className="mt-20 mb-24 flex flex-col justify-center items-center gap-6 text-white px-4">
+      <h2 className="text-3xl font-bold text-center mb-6">Meus Projetos</h2>
+      <div className="flex flex-col gap-6 w-full max-w-5xl">
+        {projects.map((project) => (
+          <div
+            key={project.slug}
+            onClick={() => handleNavigation(project.slug)}
+            className="cursor-pointer transform transition duration-300 hover:scale-105"
+          >
+            <JobHolder Job={project} />
+          </div>
+        ))}
       </div>
     </div>
   );

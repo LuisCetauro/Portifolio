@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import Image from "next/image";
 
 export default function Contact() {
@@ -13,16 +12,8 @@ export default function Contact() {
   const [pop, setPop] = useState(false);
 
   const handleInfo = (id: string) => {
-    if (id == "1") {
-      navigator.clipboard.writeText(infos[0]);
-      setPop(true);
-    } else if (id == "2") {
-      navigator.clipboard.writeText(infos[1]);
-      setPop(true);
-    } else if (id == "3") {
-      navigator.clipboard.writeText(infos[2]);
-      setPop(true);
-    }
+    navigator.clipboard.writeText(infos[parseInt(id) - 1]);
+    setPop(true);
   };
 
   useEffect(() => {
@@ -34,55 +25,50 @@ export default function Contact() {
   }, [pop]);
 
   return (
-    <div className=" flex flex-col justify-center items-center text-white mt-20 mb-24 gap-8 text-center md:text-2xl md:mt-28 md:gap-14">
-      <div className="w-4/5">
-        <h2>
+    <main className="flex flex-col justify-center items-center text-white mt-20 mb-24 gap-8 text-center md:text-2xl md:mt-28 md:gap-14">
+      <header className="w-4/5 max-w-3xl">
+        <h2 className="md:text-3xl font-semibold leading-relaxed">
           Estou feliz em receber suas perguntas, comentários e feedback. Para
-          entrar em contato, estou disponível pelos meios fornecidos abaixo,
-          clique nas imagens para copiar as informações.
+          entrar em contato, clique nas imagens para copiar as informações.
         </h2>
-      </div>
-      <div className="flex  gap-4">
-        <div
-          className="flex flex-col justify-center items-center"
-          onClick={() => handleInfo("1")}
-        >
-          <h1>WhatsApp</h1>
-          <div className="relative size-10">
-            <Image fill src="/extra/WhatsApp.svg" alt="" />
-          </div>
-          <h2>{infos[0]}</h2>
-        </div>
-        <div
-          className="flex flex-col justify-center items-center"
-          onClick={() => handleInfo("2")}
-        >
-          <h1>Email</h1>
-          <div className="relative size-10">
-            <Image fill src="/extra/mail.svg" alt="" />
-          </div>
-          <h2>{infos[1]}</h2>
-        </div>
-        <div onClick={() => handleInfo("3")}>
-          <h1>GitHub</h1>
-          <div className="relative size-10">
-            <Image fill src="/extra/github.svg" alt="" />
-          </div>
-        </div>
-      </div>
-      <div className="w-4/5">
-        <p>
-          Esse portifólio também foi feito por mim, caso tenha ficado
-          interessado o repositório está disponível no meu Github
+      </header>
+      <section className="flex flex-wrap justify-center gap-8 md:gap-16">
+        {[
+          { label: "WhatsApp", src: "/extra/WhatsApp.svg", id: "1" },
+          { label: "Email", src: "/extra/mail.svg", id: "2" },
+          { label: "GitHub", src: "/extra/github.svg", id: "3" },
+        ].map((item) => (
+          <article
+            key={item.id}
+            className="flex flex-col items-center gap-3 p-4 bg-cor3 rounded-lg shadow-lg cursor-pointer transform transition hover:scale-110"
+            onClick={() => handleInfo(item.id)}
+          >
+            <h3 className="text-lg md:text-2xl font-bold">{item.label}</h3>
+            <div className="relative w-14 h-14 md:w-20 md:h-20">
+              <Image
+                fill
+                src={item.src}
+                alt={item.label}
+                className="rounded-full"
+              />
+            </div>
+            <p className="text-sm md:text-lg text-cor1">
+              {infos[parseInt(item.id) - 1]}
+            </p>
+          </article>
+        ))}
+      </section>
+      <footer className="w-4/5 max-w-3xl">
+        <p className="text-lg md:text-xl leading-relaxed">
+          Esse portfólio também foi feito por mim. Caso tenha ficado
+          interessado, o repositório está disponível no meu GitHub.
         </p>
-      </div>
-      {pop ? (
-        <div className="border-4 border-cor2 p-2 rounded-lg">
-          Informação Copiada
-        </div>
-      ) : (
-        <></>
+      </footer>
+      {pop && (
+        <section className="border-4 border-cor2 p-3 rounded-lg bg-cor3 text-lg md:text-xl font-semibold shadow-md animate-bounce">
+          Informação Copiada!
+        </section>
       )}
-    </div>
+    </main>
   );
 }
